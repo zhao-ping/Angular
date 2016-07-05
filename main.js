@@ -20,8 +20,8 @@ routerApp.controller('routerCtrl',function($scope){
     };
     $scope.addItem=function () {
         var itemType=jQuery('input[type=radio]:checked').val();
-        console.log(itemType);
         var newElement={type:itemType};
         $scope.items.push(newElement);
+        $scope.alertShow=false;
     }
 });
