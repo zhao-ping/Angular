@@ -8,23 +8,51 @@
 
 </head>
 <body>
-<div ng-app="angularRouter">
-    <ul>
-        <li><a href="#/">首页</a> </li>
-        <li><a href="#/list">列表页</a> </li>
-        <li><a href="#/container">内容页</a> </li>
-    </ul>
-   <div ng-view></div>
+<div ng-app="angularRouter" ng-controller="routerCtrl">
+    <button ng-click="toggle()" ng-show="isShow">to preview</button>
+    <button ng-click="toggle()" ng-show="!isShow">to edit</button>
+    <div ng-show="isShow">
+       <ul>
+           <li ng-repeat="x in items">
+             <input type="items.type" /><button ng-click="deleteitem($index)">delete</button>
+           </li>
+       </ul>
+        <button ng-click="toggle1()">add</button>
+        <div ng-show="alertShow">
+            <div><input type="radio" name="type" value="text">text
+            <input type="radio" name="type" value="date">date</div>
+            <button>submit</button><button ng-click="toggle1()">exit</button>
+        </div>
+    </div>
+
+
+    <div ng-show="!isShow">
+   preview page
+    </div>
+
 </div>
+
 <script>
-    var routerApp=angular.module('angularRouter',['ngRoute']);
-    routerApp.config(['$routeProvider',function ($routeProvider) {
-        $routeProvider
-                .when('/',{template:"11111111111111"})
-                .when('/list',{template:"22222222222222"})
-                .when('/container',{template:"33333333333333333333"})
-                .otherwise({redirectTo:'/'})
-    }])
+    var routerApp=angular.module('angularRouter',[]);
+    routerApp.controller('routerCtrl',function($scope){
+        $scope.items=[
+            {type:'text'},
+            {type:'date'}
+        ]
+        $scope.isShow=true;
+        $scope.alertShow=false;
+        $scope.toggle=function () {
+            $scope.isShow=!$scope.isShow;
+        };
+        $scope.toggle1=function () {
+            $scope.alertShow=!$scope.alertShow;
+        };
+        $scope.deleteitem=function(index){
+            $scope.items.splice(index,1);
+        }
+
+    })
+
 </script>
 </body>
 </html>
