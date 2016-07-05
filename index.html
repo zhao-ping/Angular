@@ -3,8 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>angular router</title>
+    <script src="js/angular1.4.8.min.js"></script>
+    <script src="js/angular-route.js"></script>
+
 </head>
 <body>
-
+<div ng-app="angularRouter">
+    <ul>
+        <li><a href="#/">首页</a> </li>
+        <li><a href="#/list">列表页</a> </li>
+        <li><a href="#/container">内容页</a> </li>
+    </ul>
+   <div ng-view></div>
+</div>
+<script>
+    var routerApp=angular.module('angularRouter',['ngRoute']);
+    routerApp.config(['$routeProvider',function ($routeProvider) {
+        $routeProvider
+                .when('/',{template:"11111111111111"})
+                .when('/list',{template:"22222222222222"})
+                .when('/container',{template:"33333333333333333333"})
+                .otherwise({redirectTo:'/'})
+    }])
+</script>
 </body>
 </html>
