@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>angular router</title>
+    <title>angular form editor</title>
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/angular1.4.8.min.js"></script>
     <script src="js/angular-route.js"></script>
@@ -31,7 +31,7 @@
     <div ng-show="!isShow">
         <ul>
             <li ng-repeat="x in items">
-                <input type="items.type" />
+                <input type={{x.type}} />
             </li>
         </ul>
     </div>
