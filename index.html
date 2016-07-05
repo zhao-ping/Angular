@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>angular router</title>
+    <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/angular1.4.8.min.js"></script>
     <script src="js/angular-route.js"></script>
 
@@ -14,14 +15,15 @@
     <div ng-show="isShow">
        <ul>
            <li ng-repeat="x in items">
-             <input type="items.type" /><button ng-click="deleteitem($index)">delete</button>
+             <input type={{x.type}} /><button ng-click="deleteitem($index)">delete</button>
            </li>
        </ul>
         <button ng-click="toggle1()">add</button>
         <div ng-show="alertShow">
             <div><input type="radio" name="type" value="text">text
             <input type="radio" name="type" value="date">date</div>
-            <button>submit</button><button ng-click="toggle1()">exit</button>
+            <button ng-click="addItem()">submit</button>
+            <button ng-click="toggle1()">exit</button>
         </div>
     </div>
 
@@ -36,26 +38,7 @@
 
 </div>
 
-<script>
-    var routerApp=angular.module('angularRouter',[]);
-    routerApp.controller('routerCtrl',function($scope){
-        $scope.items=[
-            {type:'text'},
-            {type:'date'}
-        ]
-        $scope.isShow=true;
-        $scope.alertShow=false;
-        $scope.toggle=function () {
-            $scope.isShow=!$scope.isShow;
-        };
-        $scope.toggle1=function () {
-            $scope.alertShow=!$scope.alertShow;
-        };
-        $scope.deleteitem=function(index){
-            $scope.items.splice(index,1);
-        }
-
-    })
+<script src="main.js">
 
 </script>
 </body>
